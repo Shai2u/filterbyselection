@@ -42,9 +42,9 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         # self.rdo_single.toggled.connect(self.single_or_multi)
         # self.rdo_multi.toggled.connect(self.single_or_multi)
 
-        self.from_layer.layerChanged.connect(self.add_fields_to_cboxes)
+        self.from_layer_cb.layerChanged.connect(self.add_fields_to_from_box)
 
-        # self.from_field.fieldChanged.connect(self.changed_field)
+        # self.from_field_cb.fieldChanged.connect(self.changed_field)
 
         # self.list_values.itemSelectionChanged.connect(self.selected_value)
         # self.chb_zoom.toggled.connect(self.do_zooming)
@@ -53,10 +53,10 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         # self.but_select_all.clicked.connect(self.select_all)
 
         # Extra attributes
-        self.layer = None
-        self.field = None
+        self.from_layer = None
+        self.from_field = None
 
-        self.add_fields_to_cboxes()
+        self.add_fields_to_from_box()
 
     # def check_layer(self):
     #     if self.layer is None:
@@ -76,12 +76,12 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
     #     else:
     #         self.list_values.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
 
-    def add_fields_to_cboxes(self):
+    def add_fields_to_from_box(self):
         # self.reset_filter()
-        self.layer = self.from_layer.currentLayer()
-        self.field = None
+        self.layer = self.from_layer_cb.currentLayer()
+        self.from_field = None
         # if self.check_layer():
-        self.from_field.setLayer(self.layer)
+        self.from_field_cb.setLayer(self.layer)
         self.changed_field()
         # else:
         # if not isinstance(self.layer, qgis.core.QgsVectorLayer):
@@ -89,7 +89,7 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     def changed_field(self):
         # self.reset_filter()
-        self.field = self.from_field.currentField()
+        self.from_field = self.from_field_cb.currentField()
         # self.do_filtering()
 
     # def reset_filter(self):
