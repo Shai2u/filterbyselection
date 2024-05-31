@@ -44,7 +44,8 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
         self.from_layer_cb.layerChanged.connect(self.add_fields_to_from_box)
         self.filter_layer_cb.layerChanged.connect(self.add_fields_to_filter_box)
-        # self.from_field_cb.fieldChanged.connect(self.changed_field)
+        self.from_field_cb.fieldChanged.connect(self.changed_from_field)
+        self.filter_field.fieldChanged.connect(self.changed_filter_field)
 
         # self.list_values.itemSelectionChanged.connect(self.selected_value)
         # self.chb_zoom.toggled.connect(self.do_zooming)
@@ -98,6 +99,7 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         self.filter_layer = self.filter_layer_cb.currentLayer()
         self.filter_field = None
         self.filter_field_cb.setLayer(self.filter_layer)
+        self.filter_field_cb.setField(self.from_field)
         self.changed_filter_field()
 
     def changed_from_field(self):
@@ -113,7 +115,7 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         selected_features_count = self.filter_layer.selectedFeatureCount()
         # Do something with the number of selected features
         if selected_features_count == 0:
-            
+
             self.features_selected_label.setText("No selected features")
         elif selected_features_count == 1:
             selected_features = self.filter_layer.selectedFeatures()
