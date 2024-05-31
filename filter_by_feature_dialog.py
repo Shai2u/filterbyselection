@@ -83,10 +83,12 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
     def add_fields_to_from_box(self):
         # self.reset_filter()
         self.from_layer = self.from_layer_cb.currentLayer()
+        self.from_layer.selectionChanged.connect(self.change_seleciton)
         self.from_field = None
         # if self.check_layer():
         self.from_field_cb.setLayer(self.from_layer)
         self.changed_from_field()
+
         # else:
         # if not isinstance(self.layer, qgis.core.QgsVectorLayer):
         #     self.layer = None
@@ -106,6 +108,23 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
     def changed_filter_field(self):
         # self.reset_filter()
         self.from_field = self.from_field_cb.currentField()
+
+    def change_seleciton(self):
+        selected_features_count = self.filter_layer.selectedFeatureCount()
+        # Do something with the number of selected features
+        if selected_features_count == 0:
+            
+            self.features_selected_label.setText("No selected features")
+        elif selected_features_count == 1:
+            selected_features = self.filter_layer.selectedFeatures()
+            for feature in selected_features:
+                # Get the value of the specified field for each selected feature
+                field_value = feature.attribute(self.from_field)
+                self.features_selected_label.setText(f"{self.from_field} : {field_value}")
+
+        else:
+            self.features_selected_label.setText("Number of Selected Features: {}".format(selected_features_count))
+
     # def reset_filter(self):
     #     if self.check_layer():
     #         self.layer.setSubsetString("")
