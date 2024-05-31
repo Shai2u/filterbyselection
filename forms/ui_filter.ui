@@ -31,43 +31,22 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
+    <item row="10" column="0">
      <widget class="QPushButton" name="filter_button">
       <property name="text">
        <string>Filter</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
-     <widget class="QPushButton" name="clear_button">
+    <item row="7" column="0" colspan="2">
+     <widget class="QLabel" name="selectAttributeFrom_2">
       <property name="text">
-       <string>Clear Filter</string>
+       <string>Select Field to filter from</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="0" colspan="2">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Select Layer to filter on:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="2">
-     <widget class="QLabel" name="selectAttributeFrom">
-      <property name="text">
-       <string>Select Field froms</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="selectFeaturesFrom">
-      <property name="text">
-       <string>Select Features from the layer:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0" colspan="2">
-     <widget class="QgsFieldComboBox" name="filter_field_cb">
+    <item row="2" column="0" colspan="2">
+     <widget class="QgsMapLayerComboBox" name="from_layer_cb">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -82,10 +61,17 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="0" colspan="2">
-     <widget class="QLabel" name="selectAttributeFrom_2">
+    <item row="10" column="1">
+     <widget class="QPushButton" name="clear_button">
       <property name="text">
-       <string>Select Field to filter from</string>
+       <string>Clear Filter</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Select Layer to filter on:</string>
       </property>
      </widget>
     </item>
@@ -105,8 +91,15 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QgsMapLayerComboBox" name="from_layer_cb">
+    <item row="3" column="0" colspan="2">
+     <widget class="QLabel" name="selectAttributeFrom">
+      <property name="text">
+       <string>Select Field froms</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="2">
+     <widget class="QgsFieldComboBox" name="filter_field_cb">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -118,6 +111,20 @@
         <family>Roboto</family>
         <pointsize>11</pointsize>
        </font>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="selectFeaturesFrom">
+      <property name="text">
+       <string>Select Features from the layer:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="features_selected_label">
+      <property name="text">
+       <string>No Features selected</string>
       </property>
      </widget>
     </item>
