@@ -43,7 +43,7 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         # self.rdo_multi.toggled.connect(self.single_or_multi)
 
         self.from_layer_cb.layerChanged.connect(self.add_fields_to_from_box)
-
+        self.filter_layer_cb.layerChanged.connect(self.add_fields_to_filter_box)
         # self.from_field_cb.fieldChanged.connect(self.changed_field)
 
         # self.list_values.itemSelectionChanged.connect(self.selected_value)
@@ -56,7 +56,11 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         self.from_layer = None
         self.from_field = None
 
+        self.filter_layer = None
+        self.filter_field = None
         self.add_fields_to_from_box()
+        self.add_fields_to_filter_box()
+
 
     # def check_layer(self):
     #     if self.layer is None:
@@ -78,20 +82,30 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     def add_fields_to_from_box(self):
         # self.reset_filter()
-        self.layer = self.from_layer_cb.currentLayer()
+        self.from_layer = self.from_layer_cb.currentLayer()
         self.from_field = None
         # if self.check_layer():
-        self.from_field_cb.setLayer(self.layer)
-        self.changed_field()
+        self.from_field_cb.setLayer(self.from_layer)
+        self.changed_from_field()
         # else:
         # if not isinstance(self.layer, qgis.core.QgsVectorLayer):
         #     self.layer = None
+    
+    def add_fields_to_filter_box(self):
+        # self.reset_filter()
+        self.filter_layer = self.filter_layer_cb.currentLayer()
+        self.filter_field = None
+        self.filter_field_cb.setLayer(self.filter_layer)
+        self.changed_filter_field()
 
-    def changed_field(self):
+    def changed_from_field(self):
         # self.reset_filter()
         self.from_field = self.from_field_cb.currentField()
-        # self.do_filtering()
+        self.changed_filter_field()
 
+    def changed_filter_field(self):
+        # self.reset_filter()
+        self.from_field = self.from_field_cb.currentField()
     # def reset_filter(self):
     #     if self.check_layer():
     #         self.layer.setSubsetString("")
