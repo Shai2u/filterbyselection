@@ -1,0 +1,35 @@
+[general]
+name=Filter By Feature
+qgisMinimumVersion=3.4
+qgisMaximumVersion=3.99
+description=Filter a given layer by the selected feature and attribute of another layer
+about=Ffilter a given layer by another layer
+version=0.0.1
+author=Shai Sussman
+email=shai.sussman@gmail.com
+hasProcessingProvider=no
+# For QGIS WPS
+server=True
+
+# End of mandatory metadata
+
+# Optional items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+  Version 0.0.1
+  * test version
+
+# Tags are comma separated with spaces allowed
+tags=filter,layer,navigate,
+
+homepage=https://github.com/Shai2u/filterbyfeature
+tracker=https://github.com/Shai2u/filterbyfeature/issues
+repository=https://github.com/Shai2u/filterbyfeature
+icon=icon.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
