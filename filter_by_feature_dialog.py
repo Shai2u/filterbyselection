@@ -42,9 +42,9 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
         # self.rdo_single.toggled.connect(self.single_or_multi)
         # self.rdo_multi.toggled.connect(self.single_or_multi)
 
-        self.cob_layer.layerChanged.connect(self.add_fields_to_cboxes)
+        self.from_layer.layerChanged.connect(self.add_fields_to_cboxes)
 
-        # self.cob_field.fieldChanged.connect(self.changed_field)
+        # self.from_field.fieldChanged.connect(self.changed_field)
 
         # self.list_values.itemSelectionChanged.connect(self.selected_value)
         # self.chb_zoom.toggled.connect(self.do_zooming)
@@ -78,10 +78,10 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     def add_fields_to_cboxes(self):
         # self.reset_filter()
-        self.layer = self.cob_layer.currentLayer()
+        self.layer = self.from_layer.currentLayer()
         self.field = None
         # if self.check_layer():
-        self.cob_field.setLayer(self.layer)
+        self.from_field.setLayer(self.layer)
         self.changed_field()
         # else:
         # if not isinstance(self.layer, qgis.core.QgsVectorLayer):
@@ -89,7 +89,7 @@ class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     def changed_field(self):
         # self.reset_filter()
-        self.field = self.cob_field.currentField()
+        self.field = self.from_field.currentField()
         # self.do_filtering()
 
     # def reset_filter(self):
