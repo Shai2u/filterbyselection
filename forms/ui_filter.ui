@@ -94,7 +94,7 @@
     <item row="3" column="0" colspan="2">
      <widget class="QLabel" name="selectAttributeFrom">
       <property name="text">
-       <string>Select Field froms</string>
+       <string>Select Field from</string>
       </property>
      </widget>
     </item>
