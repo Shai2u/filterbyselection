@@ -14,5 +14,5 @@
 
 # noinspection PyDocstring,PyPep8Naming
 def classFactory(iface):
-    from .filterbyfeature import filterByFeature
-    return filterByFeature(iface)
+    from .filterbyselection import filterBySelection
+    return filterBySelection(iface)
