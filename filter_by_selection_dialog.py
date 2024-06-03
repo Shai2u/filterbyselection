@@ -102,18 +102,22 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     def set_filter(self):
         selected_features = self.from_layer.selectedFeatures()
-        selected_items = '('
-        for selected_feature in selected_features:
-            selected_items += (f"'{selected_feature[self.from_field]}' ,")
-        selected_items = selected_items[0:-1] +')'
-        
-        self.filter_layer.setSubsetString('')
+        if len(selected_features)> 0:
+            selected_items = '('
+            for selected_feature in selected_features:
+                selected_items += (f"'{selected_feature[self.from_field]}' ,")
+            selected_items = selected_items[0:-1] +')'
+            
+            self.filter_layer.setSubsetString('')
 
-        # Set the filter expression
-    
-        query = f"\"{self.filter_field}\" in {selected_items}"
-        print(query)
-        self.filter_layer.setSubsetString(query)
+            # Set the filter expression
+        
+            query = f"\"{self.filter_field}\" in {selected_items}"
+            self.filter_layer.setSubsetString(query)
+        else:
+            self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
+
+
 
     def clear_filter(self):
         self.filter_layer.setSubsetString('')
