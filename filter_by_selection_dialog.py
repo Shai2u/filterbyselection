@@ -59,18 +59,15 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
 
     def add_fields_to_from_box(self):
-        # self.reset_filter()
         self.from_layer = self.from_layer_cb.currentLayer()
         if  (self.from_layer != None) and isinstance(self.from_layer, QgsVectorLayer):
             self.from_layer.selectionChanged.connect(self.change_seleciton)
             self.from_field = None
-            # if self.check_layer():
             self.from_field_cb.setLayer(self.from_layer)
             self.changed_from_field()
 
     
     def add_fields_to_filter_box(self):
-        # self.reset_filter()
         self.filter_layer = self.filter_layer_cb.currentLayer()
         if (self.filter_layer != None) and isinstance(self.filter_layer, QgsVectorLayer):
             self.filter_field = None
