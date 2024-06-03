@@ -13,7 +13,7 @@ import sys
 import qgis
 from qgis.PyQt import QtWidgets, uic, QtGui, QtCore, QtWidgets
 from qgis.PyQt.QtWidgets import *
-from qgis.core import QgsProject
+from qgis.core import QgsProject, QgsVectorLayer
 from qgis.PyQt.QtCore import pyqtSignal
 
 
@@ -61,20 +61,22 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
     def add_fields_to_from_box(self):
         # self.reset_filter()
         self.from_layer = self.from_layer_cb.currentLayer()
-        self.from_layer.selectionChanged.connect(self.change_seleciton)
-        self.from_field = None
-        # if self.check_layer():
-        self.from_field_cb.setLayer(self.from_layer)
-        self.changed_from_field()
+        if  (self.from_layer != None) or isinstance(self.from_layer, QgsVectorLayer):
+            self.from_layer.selectionChanged.connect(self.change_seleciton)
+            self.from_field = None
+            # if self.check_layer():
+            self.from_field_cb.setLayer(self.from_layer)
+            self.changed_from_field()
 
     
     def add_fields_to_filter_box(self):
         # self.reset_filter()
         self.filter_layer = self.filter_layer_cb.currentLayer()
-        self.filter_field = None
-        self.filter_field_cb.setLayer(self.filter_layer)
-        self.filter_field_cb.setField(self.from_field)
-        self.changed_filter_field()
+        if (self.filter_layer != None) or isinstance(self.filter_layer, QgsVectorLayer):
+            self.filter_field = None
+            self.filter_field_cb.setLayer(self.filter_layer)
+            self.filter_field_cb.setField(self.from_field)
+            self.changed_filter_field()
 
     def changed_from_field(self):
         # self.reset_filter()
