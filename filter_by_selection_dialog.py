@@ -81,7 +81,6 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         self.changed_filter_field()
 
     def changed_filter_field(self):
-        # self.reset_filter()
         self.filter_field = self.from_field_cb.currentField()
 
     def change_seleciton(self):
