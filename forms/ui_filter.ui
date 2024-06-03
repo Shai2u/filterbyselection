@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Filter by feature</string>
+   <string>Filter by selection</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QGridLayout" name="gridLayout">
@@ -41,7 +41,7 @@
     <item row="7" column="0" colspan="2">
      <widget class="QLabel" name="selectAttributeFrom_2">
       <property name="text">
-       <string>Select Field to filter from</string>
+       <string>Select field to filter from</string>
       </property>
      </widget>
     </item>
@@ -71,7 +71,7 @@
     <item row="5" column="0" colspan="2">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Select Layer to filter on:</string>
+       <string>Select layer to filter on:</string>
       </property>
      </widget>
     </item>
@@ -94,7 +94,7 @@
     <item row="3" column="0" colspan="2">
      <widget class="QLabel" name="selectAttributeFrom">
       <property name="text">
-       <string>Select Field from</string>
+       <string>Select field from</string>
       </property>
      </widget>
     </item>
@@ -117,14 +117,14 @@
     <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="selectFeaturesFrom">
       <property name="text">
-       <string>Select Features from the layer:</string>
+       <string>Select features from the layer:</string>
       </property>
      </widget>
     </item>
     <item row="9" column="0" colspan="2">
      <widget class="QLabel" name="features_selected_label">
       <property name="text">
-       <string>No Features selected</string>
+       <string>No features selected</string>
       </property>
      </widget>
     </item>
