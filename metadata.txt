@@ -1,5 +1,5 @@
 [general]
-name=Filter By Feature
+name=Filter By Selection
 qgisMinimumVersion=3.4
 qgisMaximumVersion=3.99
 description=Filter a given layer by the selected feature and attribute of another layer

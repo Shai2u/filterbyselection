@@ -1,6 +1,6 @@
 """
 ****************************************************************
- Filter by feature
+ Filter by selection
                               -------------------
         begin                : 2024-05-31
         copyright            : Shai Sussman
@@ -13,10 +13,10 @@ import os.path
 from qgis.PyQt.QtCore import Qt, QSettings, QTranslator, qVersion, QCoreApplication
 from qgis.PyQt.QtWidgets import QAction
 from qgis.PyQt.QtGui import QIcon
-from .filter_by_feature_dialog import FilterByFeatureDialog
+from .filter_by_selection_dialog import FilterBySelectionDialog
 
 
-class filterByFeature:
+class filterBySelection:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -24,10 +24,10 @@ class filterByFeature:
         self.plugin_dir = os.path.dirname(__file__)
         self.icon_path = os.path.join(self.plugin_dir, 'icon.png')
         self.actions = []
-        self.menu = self.tr(u'&FilterByFeature')
+        self.menu = self.tr(u'&FilterBySelection')
 
-        self.toolbar = self.iface.addToolBar(u'FilterByFeature')
-        self.toolbar.setObjectName(u'FilterByFeature')
+        self.toolbar = self.iface.addToolBar(u'FilterBySelection')
+        self.toolbar.setObjectName(u'FilterBySelection')
         
         self.pluginIsActive = False
         self.dockwidget = None
@@ -38,7 +38,7 @@ class filterByFeature:
         We implement this ourselves since we do not inherit QObject.
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('FilterByFeature', message)
+        return QCoreApplication.translate('FilterBySelection', message)
 
     # noinspection PyPep8Naming
     def initGui(self):
@@ -46,7 +46,7 @@ class filterByFeature:
 
         """Add a toolbar icon to the toolbar."""
         icon = QIcon(self.icon_path)
-        self.panelAction = QAction(icon, self.tr(u'FilterByFeature'), self.iface.mainWindow())
+        self.panelAction = QAction(icon, self.tr(u'FilterBySelection'), self.iface.mainWindow())
         self.panelAction.triggered.connect(self.run)
         self.panelAction.setCheckable(True)
         self.panelAction.setEnabled(True)
@@ -58,7 +58,7 @@ class filterByFeature:
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(self.tr(u'&FilterByFeature'), action)
+            self.iface.removePluginMenu(self.tr(u'&FilterBySelection'), action)
             self.iface.removeToolBarIcon(action)
 
     def widgetVisibilityChanged(self, visible: bool) -> None:
@@ -76,7 +76,7 @@ class filterByFeature:
         if not self.pluginIsActive:
             self.pluginIsActive = True
             if self.dockwidget is None:
-                self.dockwidget = FilterByFeatureDialog(self.iface)
+                self.dockwidget = FilterBySelectionDialog(self.iface)
             self.dockwidget.visibilityChanged.connect(self.widgetVisibilityChanged)
 
             self.dockwidget.closingPlugin.connect(self.onClosePlugin)

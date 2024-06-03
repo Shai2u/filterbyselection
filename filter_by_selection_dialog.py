@@ -29,7 +29,7 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'forms/ui_filter.ui'))
 
 
-class FilterByFeatureDialog(QtWidgets.QDockWidget, FORM_CLASS):
+class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     closingPlugin = pyqtSignal()
 
