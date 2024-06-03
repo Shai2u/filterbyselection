@@ -118,15 +118,6 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
     def clear_filter(self):
         self.filter_layer.setSubsetString('')
 
-    def apply_filter(self, list_of_values):
-        if not self.check_layer():
-            return
-
-        filter_expression = '"{}" = \'{}\''.format(self.field, list_of_values[0])
-        if len(list_of_values) > 1:
-            for i in list_of_values[1:]:
-                filter_expression = filter_expression + ' OR "{}" = \'{}\''.format(self.field, i)
-        self.layer.setSubsetString(filter_expression)
 
 
     def closeEvent(self, event):
