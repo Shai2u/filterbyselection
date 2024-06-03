@@ -13,7 +13,7 @@ import sys
 import qgis
 from qgis.PyQt import QtWidgets, uic, QtGui, QtCore, QtWidgets
 from qgis.PyQt.QtWidgets import *
-from qgis.core import QgsProject, QgsVectorLayer
+from qgis.core import QgsProject, QgsVectorLayer, Qgis
 from qgis.PyQt.QtCore import pyqtSignal
 
 
@@ -105,9 +105,20 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
     def set_filter(self):
         selected_features = self.from_layer.selectedFeatures()
         if len(selected_features)> 0:
+            # get only the unique set
+            fields = self.from_layer.fields()
+            fieldType = fields.field(self.from_field).type()
+            # If field type is Bool, Int, Uint, LongLong, ULongLong, Double
+            numberType = fieldType in [1, 2, 3, 4, 5, 6]
+
+            get_values_from_seleceted_items = list(set([selected_feature[self.from_field] for selected_feature in selected_features]))
             selected_items = '('
-            for selected_feature in selected_features:
-                selected_items += (f"'{selected_feature[self.from_field]}' ,")
+            for selected_item in get_values_from_seleceted_items:
+                if numberType:
+                    selected_items += (f"{selected_item} ,")
+                else:
+                    selected_items += (f"'{selected_item}' ,")
+
             selected_items = selected_items[0:-1] +')'
             
             self.filter_layer.setSubsetString('')
