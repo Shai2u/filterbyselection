@@ -22,7 +22,7 @@ class filterBySelection:
     def __init__(self, iface):
         self.iface = iface
         self.plugin_dir = os.path.dirname(__file__)
-        self.icon_path = os.path.join(self.plugin_dir, 'icon.png')
+        self.icon_path = os.path.join(self.plugin_dir, 'filter_icon.png')
         self.actions = []
         self.menu = self.tr(u'&FilterBySelection')
 
