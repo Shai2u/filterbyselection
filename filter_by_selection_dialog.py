@@ -81,7 +81,7 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         self.changed_filter_field()
 
     def changed_filter_field(self):
-        self.filter_field = self.from_field_cb.currentField()
+        self.filter_field = self.filter_field_cb.currentField()
 
     def change_seleciton(self):
         selected_features_count = self.from_layer.selectedFeatureCount()
@@ -106,7 +106,7 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             fieldType = fields.field(self.from_field).type()
             # If field type is Bool, Int, Uint, LongLong, ULongLong, Double
             numberType = fieldType in [1, 2, 3, 4, 5, 6]
-            
+
             # make sure the set of values is unique
             get_values_from_seleceted_items = list(set([selected_feature[self.from_field] for selected_feature in selected_features]))
             selected_items = '('
