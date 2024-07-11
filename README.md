@@ -1,5 +1,7 @@
 # Filter by Selection
 
+![Image](media/example.png)
+
 ## Description:
 
 Filter by Selection is a QGIS plugin designed to enhance spatial analysis by allowing users to quickly filter one layer based on the selected feature and attribute from another layer, or a spreadsheet table. This tool provides a seamless way to apply attribute-based filtering, thereby enabling more precise and targeted data visualization and analysis within QGIS. The tool adds intuitive layer filtering, enabling users to quickly apply filters by a reference feature or attribute, significantly speeding up the process compared to manual filtering. This can cut the time to 1-2 seconds per filter, avoiding the need to open the filter window.
