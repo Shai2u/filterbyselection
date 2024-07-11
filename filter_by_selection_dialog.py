@@ -106,7 +106,8 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             fieldType = fields.field(self.from_field).type()
             # If field type is Bool, Int, Uint, LongLong, ULongLong, Double
             numberType = fieldType in [1, 2, 3, 4, 5, 6]
-
+            
+            # make sure the set of values is unique
             get_values_from_seleceted_items = list(set([selected_feature[self.from_field] for selected_feature in selected_features]))
             selected_items = '('
             for selected_item in get_values_from_seleceted_items:
