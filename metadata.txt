@@ -31,7 +31,7 @@ server=False
 
 
 # Tags are comma separated with spaces allowed
-tags=filter,layer,navigate,
+tags=filter,layer,navigate,selection
 
 homepage=https://github.com/Shai2u/filterbyselection
 tracker=https://github.com/Shai2u/filterbyselection/issues
