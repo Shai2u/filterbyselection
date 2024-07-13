@@ -28,6 +28,8 @@ server=False
     * Fix startup error when raster layer detected exists (such as basemap)
     Version 0.2.2
     * Fix select field from correct menu in UI
+    Version 0.2.3
+    * Set Plugin name to be consistent among all resoruce files, Added Resource files
 
 
 # Tags are comma separated with spaces allowed
