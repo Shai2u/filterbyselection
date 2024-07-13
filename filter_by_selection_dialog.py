@@ -1,6 +1,6 @@
 """
 ****************************************************************
- Filter by feature
+ Filter by Selection
                               -------------------
         begin                : 2024-05-31
         copyright            : Shai Sussman

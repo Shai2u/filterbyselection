@@ -1,6 +1,6 @@
 """
 ***************************************************************************
- Filter by feature
+ Filter by Selection
  A QGIS plugin by Shai Sussman
 
         First developed     2024/05/31
