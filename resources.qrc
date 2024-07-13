@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/plugins/filterbyselection" >
+     <file>filter_icon.png</file>
+  </qresource>
+</RCC>
