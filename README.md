@@ -1,4 +1,6 @@
-# Filter by Selection
+# Filter by Selection - Your QGIS Fitler buddy!
+
+Quick and intutitive way to filter a lyer or reset a fitler based on a selection from a reference laeyr
 
 ![Image](media/example.png)
 
