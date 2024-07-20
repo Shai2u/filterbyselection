@@ -12,7 +12,7 @@ Filtering in QGIS can be challenging, with some aspects of the interface needing
 
 1. **Modal Windows**: When you open a modal window in QGIS, you cannot interact with any other part of the application until you click “Cancel” or “OK.” This limitation hinders your ability to integrate the filter with the rest of the QGIS interface.
 2. **Value Selection** : Loading and selecting values from the value window is cumbersome and time-consuming.
-3. **Lack of Reaction** to selection of the user.
+3. **Lack of interaction with Layer Selections**: The current system does not effectively respond to user selections made directly from the layer. For example, if you need to select a large number of features one by one, the process can be inefficient and cumbersome.
 
 To address these issues, I have developed a plugin that enhances the QGIS filtering experience.
 
