@@ -4,12 +4,15 @@ Quick and intutitive way to filter a lyer or reset a fitler based on a selection
 
 ![Image](media/example.png)
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QbB1vsQhOrs?si=c35It6NbWmSLHv9F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Description:
 
 Filtering in QGIS can be challenging, with some aspects of the interface needing improvement. Here are a couple of the main issues users encounter:
 
     1.	Modal Windows: When you open a modal window in QGIS, you cannot interact with any other part of the application until you click “Cancel” or “OK.” This limitation hinders your ability to integrate the filter with the rest of the QGIS interface.
     2.	Value Selection: Loading and selecting values from the value window is cumbersome and time-consuming.
+    3. Lack of reaction to selection of the user.
 
 To address these issues, I have developed a plugin that enhances the QGIS filtering experience.
 
