@@ -41,7 +41,7 @@
     <item row="7" column="0" colspan="2">
      <widget class="QLabel" name="selectAttributeFrom_2">
       <property name="text">
-       <string>Select field to filter from</string>
+       <string>Select field (filter on layer):</string>
       </property>
      </widget>
     </item>
@@ -94,7 +94,7 @@
     <item row="3" column="0" colspan="2">
      <widget class="QLabel" name="selectAttributeFrom">
       <property name="text">
-       <string>Select field from</string>
+       <string>Select field (from layer):</string>
       </property>
      </widget>
     </item>
