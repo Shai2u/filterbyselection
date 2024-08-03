@@ -4,7 +4,7 @@ qgisMinimumVersion=3.4
 qgisMaximumVersion=3.99
 description=Filter a given layer by the selected feature and attribute of another layer
 about=Ffilter a given layer by another layer selected features
-version=0.2.3
+version=0.2.4
 author=Shai Sussman
 email=shai.sussman@gmail.com
 hasProcessingProvider=no
@@ -30,6 +30,9 @@ server=False
     * Fix select field from correct menu in UI
     Version 0.2.3
     * Set Plugin name to be consistent among all resoruce files, Added Resource files
+    Version 0.2.4
+    * Make UI titles more clear and consistent
+
 
 
 # Tags are comma separated with spaces allowed
