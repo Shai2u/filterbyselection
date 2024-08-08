@@ -26,7 +26,7 @@ except ImportError:
     pass
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'forms/ui_filter.ui'))
+    os.path.dirname(__file__), 'ui_filter.ui'))
 
 
 class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
