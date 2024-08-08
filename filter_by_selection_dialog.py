@@ -13,7 +13,7 @@ import sys
 import qgis
 from qgis.PyQt import QtWidgets, uic, QtGui, QtCore, QtWidgets
 from qgis.PyQt.QtWidgets import *
-from qgis.core import QgsProject, QgsVectorLayer, Qgis
+from qgis.core import QgsProject, QgsVectorLayer, Qgis, QgsFeatureRequest
 from qgis.PyQt.QtCore import pyqtSignal
 
 
@@ -45,6 +45,7 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         self.from_field_cb.fieldChanged.connect(self.changed_from_field)
         self.filter_field_cb.fieldChanged.connect(self.changed_filter_field)
         self.filter_button.clicked.connect(self.set_filter)
+        self.select_button.clicked.connect(self.set_selection)
         self.clear_button.clicked.connect(self.clear_filter)
 
      
@@ -97,8 +98,15 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
         else:
             self.features_selected_label.setText("Number of Selected Features: {}".format(selected_features_count))
-
-    def set_filter(self):
+    
+    def prepare_selection_query(self):
+        """
+        Prepare the selection query based on the selected features and fields.
+        Returns:
+            str: The selection query string.
+        Raises:
+            None
+        """
         selected_features = self.from_layer.selectedFeatures()
         if len(selected_features)> 0:
             # get only the unique set
@@ -123,10 +131,36 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             # Set the filter expression
         
             query = f"\"{self.filter_field}\" in {selected_items}"
+            return query
+        else: 
+            return '-1'
+        
+    def set_filter(self):
+        """
+        Set the filter for the layer based on the selected features.
+
+        Returns:
+            None
+
+        Raises:
+            None
+        """
+        query = self.prepare_selection_query()
+        if query != '-1':
             self.filter_layer.setSubsetString(query)
         else:
             self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
 
+    def set_selection(self):
+        query = self.prepare_selection_query()
+        if query != '-1':
+            # Use QgsFeatureRequest to perform the query
+            request = QgsFeatureRequest().setFilterExpression(query)
+            # Iterate over the features that match the query and select them
+            for feature in self.filter_layer.getFeatures(request):
+                self.filter_layer.select(feature.id())
+        else:
+            self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
 
 
     def clear_filter(self):
