@@ -25,10 +25,6 @@ class filterBySelection:
         self.icon_path = os.path.join(self.plugin_dir, 'filter_icon.png')
         self.actions = []
         self.menu = self.tr(u'&FilterBySelection')
-
-        self.toolbar = self.iface.addToolBar(u'FilterBySelection')
-        self.toolbar.setObjectName(u'FilterBySelection')
-        
         self.pluginIsActive = False
         self.dockwidget = None
 
@@ -51,7 +47,7 @@ class filterBySelection:
         self.panelAction.setCheckable(True)
         self.panelAction.setEnabled(True)
 
-        self.toolbar.addAction(self.panelAction)
+        self.iface.addToolBarIcon(self.panelAction)
         self.iface.addPluginToMenu(self.menu, self.panelAction)
         self.actions.append(self.panelAction)
 
