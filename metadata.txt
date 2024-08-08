@@ -32,6 +32,10 @@ server=False
     * Set Plugin name to be consistent among all resoruce files, Added Resource files
     Version 0.2.4
     * Make UI titles more clear and consistent
+    Version 0.2.5
+    * Moved toolbar icon to plugins toolbar
+    * Add selection and self selection in addition to filtering
+
 
 
 
