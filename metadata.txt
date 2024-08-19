@@ -35,6 +35,8 @@ server=False
     Version 0.2.5
     * Moved toolbar icon to plugins toolbar
     * Add selection and self selection in addition to filtering
+    Version 0.2.6
+    * Fix reset of filter when clicking on select button
 
 
 
