@@ -152,7 +152,15 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
 
     def set_selection(self):
+        # Remeber the original filter
+        original_filter = self.filter_layer.subsetString()
+
+        # Perform Query
         query = self.prepare_selection_query()
+
+        # Return to original filter
+        if len(original_filter)>0:
+            self.filter_layer.setSubsetString(original_filter)
         if query != '-1':
             # Use QgsFeatureRequest to perform the query
             request = QgsFeatureRequest().setFilterExpression(query)
