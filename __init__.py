@@ -11,8 +11,23 @@
 
 """
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from qgis.gui import QgisInterface
+
+    from .filterbyselection import filterBySelection
+
 
 # noinspection PyDocstring,PyPep8Naming
-def classFactory(iface):
+def classFactory(iface: "QgisInterface") -> "filterBySelection":
+    """Entry point called by QGIS to instantiate the plugin.
+
+    Args:
+        iface: The QGIS interface instance.
+
+    Returns:
+        The plugin instance.
+    """
     from .filterbyselection import filterBySelection
     return filterBySelection(iface)

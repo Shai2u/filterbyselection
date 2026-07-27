@@ -9,12 +9,15 @@
 """
 import os
 import sys
+from typing import Optional, TYPE_CHECKING
 
 import qgis
 from qgis.PyQt import QtWidgets, uic, QtGui, QtCore
 from qgis.core import QgsProject, QgsVectorLayer, Qgis, QgsFeatureRequest
 from qgis.PyQt.QtCore import pyqtSignal, QVariant
 
+if TYPE_CHECKING:
+    from qgis.gui import QgisInterface
 
 sys.modules["qgsfieldcombobox"] = qgis.gui
 sys.modules["qgsmaplayercombobox"] = qgis.gui
@@ -37,7 +40,14 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     closingPlugin = pyqtSignal()
 
-    def __init__(self, iface, parent=None):
+    def __init__(self, iface: "QgisInterface", parent: Optional[QtWidgets.QWidget] = None) -> None:
+        """Wire up the UI signal connections and initialize selection state.
+
+        Args:
+            iface: The QGIS interface instance.
+            parent: Unused; the dock widget is always created without a
+                Qt parent so it can float on top of the QGIS main window.
+        """
         QtWidgets.QDockWidget.__init__(self, None, QtCore.Qt.WindowType.WindowStaysOnTopHint)
 
         self.setupUi(self)
@@ -52,18 +62,19 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         self.select_button.clicked.connect(self.set_selection)
         self.clear_button.clicked.connect(self.clear_filter)
 
-     
-        # Extra attributes
-        self.from_layer = None
-        self.from_field = None
 
-        self.filter_layer = None
-        self.filter_field = None
+        # Extra attributes
+        self.from_layer: Optional[QgsVectorLayer] = None
+        self.from_field: Optional[str] = None
+
+        self.filter_layer: Optional[QgsVectorLayer] = None
+        self.filter_field: Optional[str] = None
         self.add_fields_to_from_box()
         self.add_fields_to_filter_box()
 
 
-    def add_fields_to_from_box(self):
+    def add_fields_to_from_box(self) -> None:
+        """Refresh the from-field combo box for the currently selected from-layer."""
         self.from_layer = self.from_layer_cb.currentLayer()
         if  (self.from_layer != None) and isinstance(self.from_layer, QgsVectorLayer):
             self.from_layer.selectionChanged.connect(self.change_seleciton)
@@ -71,8 +82,9 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             self.from_field_cb.setLayer(self.from_layer)
             self.changed_from_field()
 
-    
-    def add_fields_to_filter_box(self):
+
+    def add_fields_to_filter_box(self) -> None:
+        """Refresh the filter-field combo box for the currently selected filter layer."""
         self.filter_layer = self.filter_layer_cb.currentLayer()
         if (self.filter_layer != None) and isinstance(self.filter_layer, QgsVectorLayer):
             self.filter_field = None
@@ -80,15 +92,18 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             self.filter_field_cb.setField(self.from_field)
             self.changed_filter_field()
 
-    def changed_from_field(self):
+    def changed_from_field(self) -> None:
+        """Update from_field to match the from-field combo box selection."""
         # self.reset_filter()
         self.from_field = self.from_field_cb.currentField()
         self.changed_filter_field()
 
-    def changed_filter_field(self):
+    def changed_filter_field(self) -> None:
+        """Update filter_field to match the filter-field combo box selection."""
         self.filter_field = self.filter_field_cb.currentField()
 
-    def change_seleciton(self):
+    def change_seleciton(self) -> None:
+        """Update the selected-features label to reflect the from-layer's current selection."""
         selected_features_count = self.from_layer.selectedFeatureCount()
         # Do something with the number of selected features
         if selected_features_count == 0:
@@ -103,7 +118,7 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         else:
             self.features_selected_label.setText("Number of Selected Features: {}".format(selected_features_count))
     
-    def prepare_selection_query(self):
+    def prepare_selection_query(self) -> str:
         """
         Prepare the selection query based on the selected features and fields.
         Returns:
@@ -138,7 +153,7 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         else: 
             return '-1'
         
-    def set_filter(self):
+    def set_filter(self) -> None:
         """
         Set the filter for the layer based on the selected features.
 
@@ -154,7 +169,13 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         else:
             self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
 
-    def set_selection(self):
+    def set_selection(self) -> None:
+        """Select filter-layer features matching the from-layer's selection.
+
+        The filter layer's subset filter is cleared while the match query is
+        built (see prepare_selection_query), then restored before the
+        matching features are selected.
+        """
         # Remeber the original filter
         original_filter = self.filter_layer.subsetString()
 
@@ -174,11 +195,13 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
 
 
-    def clear_filter(self):
+    def clear_filter(self) -> None:
+        """Reset the filter layer's subset filter."""
         self.filter_layer.setSubsetString('')
 
 
 
-    def closeEvent(self, event):
+    def closeEvent(self, event: QtGui.QCloseEvent) -> None:
+        """Emit closingPlugin and accept the widget close event."""
         self.closingPlugin.emit()
         event.accept()
