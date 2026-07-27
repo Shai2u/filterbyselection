@@ -13,7 +13,7 @@ import sys
 import qgis
 from qgis.PyQt import QtWidgets, uic, QtGui, QtCore
 from qgis.core import QgsProject, QgsVectorLayer, Qgis, QgsFeatureRequest
-from qgis.PyQt.QtCore import pyqtSignal
+from qgis.PyQt.QtCore import pyqtSignal, QVariant
 
 
 sys.modules["qgsfieldcombobox"] = qgis.gui
@@ -21,6 +21,16 @@ sys.modules["qgsmaplayercombobox"] = qgis.gui
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'ui_filter.ui'))
+
+# Field types that should be embedded unquoted in the filter expression.
+NUMERIC_FIELD_TYPES = (
+    QVariant.Bool,
+    QVariant.Int,
+    QVariant.UInt,
+    QVariant.LongLong,
+    QVariant.ULongLong,
+    QVariant.Double,
+)
 
 
 class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
@@ -106,8 +116,7 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
             # get only the unique set
             fields = self.from_layer.fields()
             fieldType = fields.field(self.from_field).type()
-            # If field type is Bool, Int, Uint, LongLong, ULongLong, Double
-            numberType = fieldType in [1, 2, 3, 4, 5, 6]
+            numberType = fieldType in NUMERIC_FIELD_TYPES
 
             # make sure the set of values is unique
             get_values_from_seleceted_items = list(set([selected_feature[self.from_field] for selected_feature in selected_features]))
