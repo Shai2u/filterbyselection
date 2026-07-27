@@ -11,19 +11,13 @@ import os
 import sys
 
 import qgis
-from qgis.PyQt import QtWidgets, uic, QtGui, QtCore, QtWidgets
-from qgis.PyQt.QtWidgets import *
+from qgis.PyQt import QtWidgets, uic, QtGui, QtCore
 from qgis.core import QgsProject, QgsVectorLayer, Qgis, QgsFeatureRequest
 from qgis.PyQt.QtCore import pyqtSignal
 
 
 sys.modules["qgsfieldcombobox"] = qgis.gui
 sys.modules["qgsmaplayercombobox"] = qgis.gui
-
-try:
-    from qgis.core import QgsMapLayerRegistry
-except ImportError:
-    pass
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'ui_filter.ui'))
