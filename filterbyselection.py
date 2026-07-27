@@ -77,7 +77,7 @@ class filterBySelection:
             self.dockwidget.closingPlugin.connect(self.onClosePlugin)
 
             self.iface.addDockWidget(
-                area=Qt.LeftDockWidgetArea,
+                area=Qt.DockWidgetArea.LeftDockWidgetArea,
                 dockwidget=self.dockwidget,
             )
             
