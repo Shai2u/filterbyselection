@@ -204,9 +204,9 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         if query != '-1':
             # Use QgsFeatureRequest to perform the query
             request = QgsFeatureRequest().setFilterExpression(query)
-            # Iterate over the features that match the query and select them
-            for feature in self.filter_layer.getFeatures(request):
-                self.filter_layer.select(feature.id())
+            # Select all matching features in a single batched call
+            matching_ids = [feature.id() for feature in self.filter_layer.getFeatures(request)]
+            self.filter_layer.selectByIds(matching_ids)
         else:
             self.iface.messageBar().pushMessage("Ooops", "Select at least one feature", level=Qgis.Warning, duration=3)
 
