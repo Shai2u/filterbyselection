@@ -39,6 +39,9 @@ server=False
     * Fix reset of filter when clicking on select button
     Version 0.2.7
     * Support QGIS 4 / PyQt6
+    Version 0.2.8
+    * Guard against filtering/selecting before layers and fields are set
+    * Batch feature selection with selectByIds instead of per-feature select
 
 
 
