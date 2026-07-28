@@ -1,10 +1,10 @@
 [general]
 name=Filter By Selection
 qgisMinimumVersion=3.4
-qgisMaximumVersion=3.99
+qgisMaximumVersion=4.99
 description=Filter a given layer by the selected feature and attribute of another layer
 about=Ffilter a given layer by another layer selected features
-version=0.2.6
+version=0.2.7
 author=Shai Sussman
 email=shai.sussman@gmail.com
 hasProcessingProvider=no
@@ -37,6 +37,8 @@ server=False
     * Add selection and self selection in addition to filtering
     Version 0.2.6
     * Fix reset of filter when clicking on select button
+    Version 0.2.7
+    * Support QGIS 4 / PyQt6
 
 
 
