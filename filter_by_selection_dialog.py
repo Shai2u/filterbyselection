@@ -118,6 +118,15 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         else:
             self.features_selected_label.setText("Number of Selected Features: {}".format(selected_features_count))
     
+    def _has_required_selection(self) -> bool:
+        """Return True if both layers and both fields have been selected."""
+        return (
+            self.from_layer is not None
+            and self.filter_layer is not None
+            and self.from_field is not None
+            and self.filter_field is not None
+        )
+
     def prepare_selection_query(self) -> str:
         """
         Prepare the selection query based on the selected features and fields.
@@ -163,6 +172,9 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         Raises:
             None
         """
+        if not self._has_required_selection():
+            self.iface.messageBar().pushMessage("Ooops", "Select both layers and fields first", level=Qgis.Warning, duration=3)
+            return
         query = self.prepare_selection_query()
         if query != '-1':
             self.filter_layer.setSubsetString(query)
@@ -176,6 +188,10 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
         built (see prepare_selection_query), then restored before the
         matching features are selected.
         """
+        if not self._has_required_selection():
+            self.iface.messageBar().pushMessage("Ooops", "Select both layers and fields first", level=Qgis.Warning, duration=3)
+            return
+
         # Remeber the original filter
         original_filter = self.filter_layer.subsetString()
 
@@ -197,7 +213,8 @@ class FilterBySelectionDialog(QtWidgets.QDockWidget, FORM_CLASS):
 
     def clear_filter(self) -> None:
         """Reset the filter layer's subset filter."""
-        self.filter_layer.setSubsetString('')
+        if self.filter_layer is not None:
+            self.filter_layer.setSubsetString('')
 
 
 
