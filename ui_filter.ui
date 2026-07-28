@@ -31,14 +31,24 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
+    <item row="12" column="1">
      <widget class="QPushButton" name="filter_button">
       <property name="text">
        <string>Filter</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="0" colspan="3">
+    <item row="5" column="0" colspan="3">
+     <widget class="QFrame" name="from_filter_separator">
+      <property name="frameShape">
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="3">
      <widget class="QLabel" name="selectAttributeFrom_2">
       <property name="text">
        <string>Select field (filter on layer):</string>
@@ -61,28 +71,28 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
+    <item row="12" column="0">
      <widget class="QPushButton" name="select_button">
       <property name="text">
        <string>Select</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="2">
+    <item row="12" column="2">
      <widget class="QPushButton" name="clear_button">
       <property name="text">
        <string>Clear Filter</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="0" colspan="3">
+    <item row="6" column="0" colspan="3">
      <widget class="QLabel" name="label">
       <property name="text">
        <string>Select layer to filter on:</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="0" colspan="3">
+    <item row="7" column="0" colspan="3">
      <widget class="QgsMapLayerComboBox" name="filter_layer_cb">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -105,7 +115,7 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="0" colspan="3">
+    <item row="9" column="0" colspan="3">
      <widget class="QgsFieldComboBox" name="filter_field_cb">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -128,7 +138,17 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="0" colspan="3">
+    <item row="10" column="0" colspan="3">
+     <widget class="QFrame" name="results_separator">
+      <property name="frameShape">
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0" colspan="3">
      <widget class="QLabel" name="features_selected_label">
       <property name="text">
        <string>No features selected</string>
