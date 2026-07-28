@@ -4,7 +4,7 @@ qgisMinimumVersion=3.4
 qgisMaximumVersion=4.99
 description=Filter a given layer by the selected feature and attribute of another layer
 about=Filter a given layer by another layer selected features
-version=0.2.8
+version=0.3.0
 author=Shai Sussman
 email=shai.sussman@gmail.com
 hasProcessingProvider=no
@@ -42,6 +42,10 @@ server=False
     Version 0.2.8
     * Guard against filtering/selecting before layers and fields are set
     * Batch feature selection with selectByIds instead of per-feature select
+    Version 0.2.9
+    * Add horizontal separator between the two layer sections in the UI
+    Version 0.3.0
+    * Add horizontal separator above the results/action button row
 
 
 
